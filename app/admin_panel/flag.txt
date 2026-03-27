@@ -1,0 +1,1 @@
+FLAG{Linux_Permissions_Are_Important_2026}

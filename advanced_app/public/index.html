@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>network connection tool</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; background-color: #f4f4f9; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }
+        input[type="text"] { padding: 10px; width: 65%; margin-right: 10px; font-family: monospace;}
+        button { padding: 10px 20px; cursor: pointer; background-color: #0056b3; color: white; border: none; border-radius: 4px;}
+        button:hover { background-color: #004494; }
+        .terminal { background: #1e1e1e; color: #00ff00; padding: 15px; overflow-x: auto; border-radius: 5px; font-family: monospace; line-height: 1.5; margin-top: 20px;}
+        .warning { color: red; font-size: 0.9em; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>network connection tool for internal testing</h2>
+        <p>input IP address (e.g. 127.0.0.1)</p>
+        
+        <form action="/ping" method="GET">
+            <input type="text" name="ip" placeholder="127.0.0.1" required>
+            <button type="submit">execute Ping</button>
+        </form>
+        <div class="warning">WARNING: only for admin</div>
+
+        <div id="result">
+            </div>
+    </div>
+</body>
+</html>
