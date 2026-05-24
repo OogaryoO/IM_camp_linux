@@ -49,3 +49,69 @@
   打開 `server.py`，將原本危險的寫法改為安全的「陣列（List）」寫法，並移除 `shell=True`：
   ```python
   subprocess.check_output(["ping", "-c", "3", ip_address], text=True)
+
+
+## Bash 自動化腳本實作範本
+```bash
+#!/bin/bash
+
+# 變數設定
+# 任務 1: 設定硬碟警告的 % 數閥值為 80 (提示：等號兩邊不能有空格)
+DISK_LIMIT=____
+TARGET_IP="8.8.8.8"
+
+# 絕招一：系統基本資訊
+function check_system() {
+    echo "=== 系統基本資訊 ==="
+    uptime
+    free -h
+}
+
+# 絕招二：硬碟空間檢查與警報
+function check_disk() {
+    echo "=== 硬碟空間檢查 ==="
+    # 這裡我們用一點進階魔法，自動抓出根目錄的使用率數字 (同學先不用背這行)
+    USAGE=$(df -h / | awk 'NR==2 {print $5}' | sed 's/%//')
+    echo "目前根目錄使用率: ${USAGE}%"
+
+    # 任務 2: 判斷 USAGE 是否大於 DISK_LIMIT (提示：大於的參數是 -gt)
+    if [ $USAGE ____ $DISK_LIMIT ]; then
+        echo "🚨 警告：硬碟空間即將不足！請盡速清理！"
+    else
+        echo "✅ 硬碟空間安全。"
+    fi
+}
+
+# 絕招三：網路連線測試
+function check_network() {
+    echo "=== 網路連線測試 ==="
+    echo "正在測試與外部網路 ($TARGET_IP) 的連線..."
+    # 任務 3: 用 ping 發送 3 個測試封包給目標 IP (提示：指定次數的參數是 -c)
+    ping ____ 3 $TARGET_IP
+}
+
+# 主程式：無限輪迴的互動選單
+while true; do
+    echo ""
+    echo "--------------------------"
+    echo " 歡迎來到系統管理員控制台 "
+    echo " 1. 查看系統基本資訊"
+    echo " 2. 檢查硬碟空間與警報"
+    echo " 3. 測試網路連線"
+    echo " 4. 離開系統"
+    echo "--------------------------"
+    
+    # 任務 4: 讀取使用者的輸入，並將輸入的數字存入變數 choice (提示：讀取指令是 read)
+    ____ -p "請輸入選項 (1-4): " choice
+
+    # 任務 5: 根據使用者輸入的 choice 變數，執行對應的絕招 (提示：讀取變數要加 $)
+    case ____ in
+        1) check_system ;;
+        2) check_disk ;;
+        3) check_network ;;
+        4) echo "登出系統，系統管理員辛苦了！"; exit 0 ;;
+        *) echo "❌ 無效的選項，請重新輸入。" ;;
+    esac
+    sleep 1 # 暫停一秒，讓畫面看起來更順暢
+done
+```
