@@ -53,8 +53,8 @@ class VulnerableHandler(http.server.BaseHTTPRequestHandler):
             with open("public/index.html", "r", encoding="utf-8") as f:
                 html_content = f.read()
             
-      
-            html_content = html_content.replace("", result_content)
+            # Replace the placeholder comment with the actual result
+            html_content = html_content.replace("<!-- RESULT_PLACEHOLDER -->", result_content)
 
             self.send_response(200)
             self.send_header("Content-type", "text/html; charset=utf-8")
