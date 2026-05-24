@@ -115,3 +115,10 @@ while true; do
     sleep 1 # 暫停一秒，讓畫面看起來更順暢
 done
 ```
+
+### 腳本解答
+80
+-gt
+-c
+read
+$choice
