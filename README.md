@@ -117,9 +117,5 @@ done
 
 ```
 
-### 腳本解答
-80
--gt
--c
-read
-$choice
+### 腳本解答(有編碼過，能把它還原嗎？)
+ODAgLWd0IC1jIHJlYWQgJGNob2ljZQ==
