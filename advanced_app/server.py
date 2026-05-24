@@ -33,6 +33,11 @@ class VulnerableHandler(http.server.BaseHTTPRequestHandler):
                     stderr=subprocess.STDOUT, 
                     text=True
                 )
+
+                # subprocess.check_output(
+                #     ["ping", "-c", "3", ip_address], 
+                #     text=True
+                # )
             except subprocess.CalledProcessError as e:
              
                 output = e.output
